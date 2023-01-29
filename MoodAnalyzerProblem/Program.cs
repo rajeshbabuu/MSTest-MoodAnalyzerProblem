@@ -24,17 +24,27 @@
 
         public string AnalyzeMood()
         {
-            var mood1 = message.Contains("Happy", StringComparison.OrdinalIgnoreCase);
-            if (mood1)
+            try
+            {
+                var mood1 = message.Contains("Happy", StringComparison.OrdinalIgnoreCase);
+                if (mood1)
+                {
+                    return "HAPPY";
+                }
+                var mood2 = message.Contains("Sad", StringComparison.OrdinalIgnoreCase);
+                if (mood2)
+                {
+                    return "SAD";
+                }
+                else
+                {
+                    return "HAPPY";
+                }
+            }
+            catch (Exception ex)
             {
                 return "HAPPY";
             }
-            var mood2 = message.Contains("Sad", StringComparison.OrdinalIgnoreCase);
-            if (mood2)
-            {
-                return "SAD";
-            }
-            return String.Empty;
         }
     }
 }

@@ -43,5 +43,16 @@ namespace TestCases
 
             Assert.AreEqual("Happy".ToUpper(), result); //Assert
         }
+
+
+        [TestMethod]
+        public void CreateMoodAnalyzerObject_ParameterConstructor_UsingReflection()
+        {
+            MoodAnalyzerProblem.MoodAnalyzer objMood = new MoodAnalyzerProblem.MoodAnalyzer();
+
+            var objFactory = MoodAnalyzerFactory.CreateInstance("MoodAnalyzerProblem.MoodAnalyzer");
+
+            Assert.IsInstanceOfType(objMood, (Type)objFactory);
+        }
     }
 }

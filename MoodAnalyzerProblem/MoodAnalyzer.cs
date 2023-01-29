@@ -26,7 +26,11 @@ namespace MoodAnalyzerProblem
             {
                 if (message == null)
                 {
-                    throw new MoodAnalysisExceptions(MoodAnalysisErrors.Invalid.ToString());
+                    throw new MoodAnalysisExceptions(MoodAnalysisErrors.Null.ToString());
+                }
+                if (message == " ")
+                {
+                    throw new MoodAnalysisExceptions(MoodAnalysisErrors.Empty.ToString());
                 }
                 var mood1 = message.Contains("Happy", StringComparison.OrdinalIgnoreCase);
                 if (mood1)
@@ -52,8 +56,16 @@ namespace MoodAnalyzerProblem
     }
     public enum MoodAnalysisErrors
     {
-        Invalid,
         Null,
         Empty
+    }
+
+    public class MoodAnalyzerFactory
+    {
+        public static Type CreateInstance(string className)
+        {
+            Type type = Type.GetType(className);
+            return type;
+        }
     }
 }
